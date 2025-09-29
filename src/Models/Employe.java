@@ -1,5 +1,8 @@
 package Models;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Employe extends Person {
 
     enum ContractType{
@@ -21,8 +24,24 @@ public class Employe extends Person {
     private ContractType contractType;
     private EmploymentSector employmentSector;
 
+    public Employe(String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Double score, Integer anciennete, Integer salaire, String post, ContractType contractType, EmploymentSector employmentSector) {
+        super(nom, prenom, email, dateNaissance, ville, adresse, telephone, nombreEnfants, investissement, placement, situationFamiliale, score);
+        this.anciennete = anciennete;
+        this.salaire = salaire;
+        this.post = post;
+        this.contractType = contractType;
+        this.employmentSector = employmentSector;
+    }
 
 
+    public Employe(Integer id, String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Double score, LocalDateTime dateCreation, Integer anciennete, Integer salaire, String post, ContractType contractType, EmploymentSector employmentSector) {
+        super(id, nom, prenom, email, dateNaissance, ville, adresse, telephone, nombreEnfants, investissement, placement, situationFamiliale, score, dateCreation);
+        this.anciennete = anciennete;
+        this.salaire = salaire;
+        this.post = post;
+        this.contractType = contractType;
+        this.employmentSector = employmentSector;
+    }
 
     public Integer getAnciennete() {
         return anciennete;
