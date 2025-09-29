@@ -2,7 +2,7 @@ package Models;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.util.UUID;
+import java.lang.Integer;
 
 public class Credit {
     enum CreditType{
@@ -11,8 +11,8 @@ public class Credit {
     enum DecisionType{
         ACCORDIMMEDIAT, ETUDEMANUELLE, REFUS_AUTOMATIQUE
     }
-    private UUID id;
-    private UUID clientId;
+    private Integer id;
+    private Integer clientId;
     private LocalDate dateDeCredit;
     private BigDecimal montantDemande;
     private BigDecimal montantOctroye;
@@ -23,7 +23,7 @@ public class Credit {
     private Instant createdAt;
     private String approverId;
 
-    public Credit(UUID id, UUID clientId, LocalDate dateDeCredit, BigDecimal montantDemande,
+    public Credit(Integer id, Integer clientId, LocalDate dateDeCredit, BigDecimal montantDemande,
                   BigDecimal montantOctroye, double tauxInteret, int dureeEnMois,
                   CreditType typeCredit, DecisionType decision, Instant createdAt, String approverId) {
         this.id = id;
@@ -39,7 +39,7 @@ public class Credit {
         this.approverId = approverId;
     }
 
-    public Credit(UUID clientId, LocalDate dateDeCredit, BigDecimal montantDemande,
+    public Credit(Integer clientId, LocalDate dateDeCredit, BigDecimal montantDemande,
                   BigDecimal montantOctroye, double tauxInteret, int dureeEnMois,
                   CreditType typeCredit, DecisionType decision, Instant createdAt, String approverId) {
         this.clientId = clientId;
@@ -54,19 +54,19 @@ public class Credit {
         this.approverId = approverId;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public UUID getClientId() {
+    public Integer getClientId() {
         return clientId;
     }
 
-    public void setClientId(UUID clientId) {
+    public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 
