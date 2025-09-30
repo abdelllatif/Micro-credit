@@ -9,10 +9,11 @@ import java.util.stream.Collectors;
 
 public class EmployeService {
 
-    private final EmployeRepository repository;
+    private  EmployeRepository repository;
 
-    public EmployeService(EmployeRepository repository) {
-        this.repository = repository;
+    public EmployeService() {
+
+        this.repository = new EmployeRepository();
     }
 
     private Employe mapResultSetToEmploye(ResultSet rs) throws SQLException {
@@ -23,16 +24,16 @@ public class EmployeService {
         e.setDateNaissance(rs.getDate("datedenaissance").toLocalDate());
         e.setVille(rs.getString("ville"));
         e.setNombreEnfants(rs.getInt("nombreEnfants"));
-        e.setInvestissement(rs.getBigDecimal("investissement"));
-        e.setPlacement(rs.getBigDecimal("placement"));
+        e.setInvestissement(rs.getBoolean("investissement"));
+        e.setPlacement(rs.getBoolean("placement"));
         e.setSituationFamiliale(rs.getString("situation_familiale"));
-        e.getDateCreation(rs.getTimestamp("createdAt").toInstant());
-        e.setScore(rs.getvDouble("score"));
-        e.setSalaire(rs.getBigDecimal("salaire"));
+        e.setDateCreation(rs.getTimestamp("createdAt").toLocalDateTime());
+        e.setScore(rs.getDouble("score"));
+        e.setSalaire(rs.getFloat("salaire"));
         e.setAnciennete(rs.getInt("anciennete"));
-        e.setPoste(rs.getString("poste"));
-        e.setTypeContrat(TypeContrat.valueOf(rs.getString("typecontrat")));
-        e.setSecteur(Secteur.valueOf(rs.getString("secteur")));
+        e.setPost(rs.getString("poste"));
+        e.setContractType(Employe.ContractType.valueOf(rs.getString("typecontrat")));
+        e.setEmploymentSector(Employe.EmploymentSector.valueOf(rs.getString("secteur")));
         return e;
     }
 

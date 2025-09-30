@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class Employe extends Person {
 
-    enum ContractType{
+  public  enum ContractType{
         CDI_PUBLIC,
         CDI_PRIVEE_GRANDE_ENTREPRISE,
         CDI_PRIVEE_PME,
@@ -13,7 +13,7 @@ public class Employe extends Person {
         PROFESSION_LIBERALE_STABLE,
         AUTO_ENTREPRENEUR
     };
-    enum EmploymentSector {
+  public   enum EmploymentSector {
         PUBLIC,
         GRANDE_ENTREPRISE,
         PME

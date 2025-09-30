@@ -1,4 +1,5 @@
 package Repository;
+import Config.DbConnection;
 import Models.Employe;
 
 import java.sql.*;
@@ -7,9 +8,10 @@ public class EmployeRepository {
 
     private final Connection connection;
 
-    public EmployeRepository(Connection connection) {
-        this.connection = connection;
+    public EmployeRepository() {
+        this.connection = new DbConnection().getConnection();
     }
+
 
     public ResultSet findAll() throws SQLException {
         String sql = "SELECT * FROM employes";
@@ -25,7 +27,7 @@ public class EmployeRepository {
     }
 
     public int save(Employe employe) throws SQLException {
-        String sql = "INSERT INTO employes (nom, prenom, datedenaissance, ville, nombreEnfants, investissement, placement, situation_familiale, score, salaire, anciennete, poste, typecontrat, secteur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO employes (nom, prenom, datedenaissance, ville, nombreEnfants, investissement, placement, situation_familiale, score, salaire, anciennete, poste, typecontrat, secteur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, employe.getNom());
         ps.setString(2, employe.getPrenom());
@@ -35,12 +37,12 @@ public class EmployeRepository {
         ps.setBoolean(6, employe.getInvestissement());
         ps.setBoolean(7, employe.getPlacement());
         ps.setString(8, employe.getSituationFamiliale());
-        ps.setDouble(10, employe.getScore());
-        ps.setFloat(11, employe.getSalaire());
-        ps.setInt(12, employe.getAnciennete());
-        ps.setString(13, employe.getPost());
-        ps.setString(14, employe.getContractType().name());
-        ps.setString(15, employe.getEmploymentSector().name());
+        ps.setDouble(9, employe.getScore());
+        ps.setFloat(10, employe.getSalaire());
+        ps.setInt(11, employe.getAnciennete());
+        ps.setString(12, employe.getPost());
+        ps.setString(13, employe.getContractType().name());
+        ps.setString(14, employe.getEmploymentSector().name());
         ps.executeUpdate();
 
         ResultSet rs = ps.getGeneratedKeys();
