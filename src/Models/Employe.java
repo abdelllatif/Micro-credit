@@ -19,12 +19,12 @@ public class Employe extends Person {
         PME
     }
     private Integer anciennete;
-    private Integer salaire;
+    private Float salaire;
     private String post;
     private ContractType contractType;
     private EmploymentSector employmentSector;
 
-    public Employe(String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Double score, Integer anciennete, Integer salaire, String post, ContractType contractType, EmploymentSector employmentSector) {
+    public Employe(String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Double score, Integer anciennete, Float salaire, String post, ContractType contractType, EmploymentSector employmentSector) {
         super(nom, prenom, email, dateNaissance, ville, adresse, telephone, nombreEnfants, investissement, placement, situationFamiliale, score);
         this.anciennete = anciennete;
         this.salaire = salaire;
@@ -34,13 +34,15 @@ public class Employe extends Person {
     }
 
 
-    public Employe(Integer id, String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Double score, LocalDateTime dateCreation, Integer anciennete, Integer salaire, String post, ContractType contractType, EmploymentSector employmentSector) {
+    public Employe(Integer id, String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Double score, LocalDateTime dateCreation, Integer anciennete, Float salaire, String post, ContractType contractType, EmploymentSector employmentSector) {
         super(id, nom, prenom, email, dateNaissance, ville, adresse, telephone, nombreEnfants, investissement, placement, situationFamiliale, score, dateCreation);
         this.anciennete = anciennete;
         this.salaire = salaire;
         this.post = post;
         this.contractType = contractType;
         this.employmentSector = employmentSector;
+    }
+    public Employe() {
     }
 
     public Integer getAnciennete() {
@@ -51,11 +53,11 @@ public class Employe extends Person {
         this.anciennete = anciennete;
     }
 
-    public Integer getSalaire() {
+    public Float getSalaire() {
         return salaire;
     }
 
-    public void setSalaire(Integer salaire) {
+    public void setSalaire(Float salaire) {
         this.salaire = salaire;
     }
 
