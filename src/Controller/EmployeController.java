@@ -22,7 +22,29 @@ public class EmployeController {
     public void listAllEmployes() {
         try {
             List<Employe> employes = service.getAllEmployes();
-            employes.forEach(System.out::println);
+            employes.forEach(e->{
+                System.out.println("=== Employe "+ e.getId() +"  ===");
+                System.out.println("Nom: " + e.getNom());
+                System.out.println("Prenom: " + e.getPrenom());
+                System.out.println("Email: " + e.getEmail());
+                System.out.println("Date Naissance: " + e.getDateNaissance());
+                System.out.println("Ville: " + e.getVille());
+                System.out.println("Adresse: " + e.getAdresse());
+                System.out.println("Telephone: " + e.getTelephone());
+                System.out.println("Nombre Enfants: " + e.getNombreEnfants());
+                System.out.println("Investissement: " + e.getInvestissement());
+                System.out.println("Placement: " + e.getPlacement());
+                System.out.println("Situation Familiale: " + e.getSituationFamiliale());
+                System.out.println("Score: " + e.getScore());
+                System.out.println("Anciennete: " + e.getAnciennete());
+                System.out.println("Salaire: " + e.getSalaire());
+                System.out.println("Poste: " + e.getPost());
+                System.out.println("Contract Type: " + e.getContractType());
+                System.out.println("Employment Sector: " + e.getEmploymentSector());
+                System.out.println("======================");
+                    }
+
+            );
         } catch (SQLException e) {
             System.out.println("Error fetching employes: " + e.getMessage());
         }
@@ -31,17 +53,118 @@ public class EmployeController {
     public void getEmployeById() {
         System.out.print("Enter Employe ID: ");
         int id = scanner.nextInt();
+        scanner.nextLine();
         try {
-            Optional<Employe> employe = service.getEmployeById(id);
-            System.out.println(employe.orElse(null));
-            if (!employe.isPresent()) {
+            Optional<Employe> employeOpt = service.getEmployeById(id);
+            if (employeOpt.isPresent()) {
+                Employe e = employeOpt.get();
+                System.out.println("=== Employe Details ===");
+                System.out.println("ID: " + e.getId());
+                System.out.println("Nom: " + e.getNom());
+                System.out.println("Prenom: " + e.getPrenom());
+                System.out.println("Email: " + e.getEmail());
+                System.out.println("Date Naissance: " + e.getDateNaissance());
+                System.out.println("Ville: " + e.getVille());
+                System.out.println("Adresse: " + e.getAdresse());
+                System.out.println("Telephone: " + e.getTelephone());
+                System.out.println("Nombre Enfants: " + e.getNombreEnfants());
+                System.out.println("Investissement: " + e.getInvestissement());
+                System.out.println("Placement: " + e.getPlacement());
+                System.out.println("Situation Familiale: " + e.getSituationFamiliale());
+                System.out.println("Score: " + e.getScore());
+                System.out.println("Anciennete: " + e.getAnciennete());
+                System.out.println("Salaire: " + e.getSalaire());
+                System.out.println("Poste: " + e.getPost());
+                System.out.println("Contract Type: " + e.getContractType());
+                System.out.println("Employment Sector: " + e.getEmploymentSector());
+                System.out.println("======================");
+            } else {
                 System.out.println("Employe not found");
             }
-
-        } catch (SQLException e) {
-            System.out.println("Error fetching employe: " + e.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("Error fetching employe: " + ex.getMessage());
         }
     }
+
+    public void updateEmploye() {
+        try {
+            System.out.print("Enter Employe ID: ");
+            int id = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+
+            Optional<Employe> employeOpt = service.getEmployeById(id);
+
+            if (!employeOpt.isPresent()) {
+                System.out.println("Employe not found with ID: " + id);
+                return;
+            }
+
+            Employe e = employeOpt.get();
+
+            System.out.print("Nom (" + e.getNom() + "): ");
+            String nom = scanner.nextLine();
+            if (!nom.isEmpty()) e.setNom(nom);
+
+            System.out.print("Prenom (" + e.getPrenom() + "): ");
+            String prenom = scanner.nextLine();
+            if (!prenom.isEmpty()) e.setPrenom(prenom);
+
+            System.out.print("Ville (" + e.getVille() + "): ");
+            String ville = scanner.nextLine();
+            if (!ville.isEmpty()) e.setVille(ville);
+
+            System.out.print("Salaire (" + e.getSalaire() + "): ");
+            String salaireStr = scanner.nextLine();
+            if (!salaireStr.isEmpty()) e.setSalaire(Float.parseFloat(salaireStr));
+
+            System.out.print("Poste (" + e.getPost() + "): ");
+            String post = scanner.nextLine();
+            if (!post.isEmpty()) e.setPost(post);
+
+            System.out.print("Contract Type (" + e.getContractType() + "): ");
+            String ct = scanner.nextLine();
+            if (!ct.isEmpty()) e.setContractType(Employe.ContractType.valueOf(ct));
+
+            System.out.print("Employment Sector (" + e.getEmploymentSector() + "): ");
+            String es = scanner.nextLine();
+            if (!es.isEmpty()) e.setEmploymentSector(Employe.EmploymentSector.valueOf(es));
+
+            System.out.print("Anciennete (" + e.getAnciennete() + "): ");
+            String ancStr = scanner.nextLine();
+            if (!ancStr.isEmpty()) e.setAnciennete(Integer.parseInt(ancStr));
+
+            System.out.print("Nombre Enfants (" + e.getNombreEnfants() + "): ");
+            String enfantsStr = scanner.nextLine();
+            if (!enfantsStr.isEmpty()) e.setNombreEnfants(Integer.parseInt(enfantsStr));
+
+            System.out.print("Investissement (" + e.getInvestissement() + "): ");
+            String invStr = scanner.nextLine();
+            if (!invStr.isEmpty()) e.setInvestissement(Boolean.parseBoolean(invStr));
+
+            System.out.print("Placement (" + e.getPlacement() + "): ");
+            String plStr = scanner.nextLine();
+            if (!plStr.isEmpty()) e.setPlacement(Boolean.parseBoolean(plStr));
+
+            System.out.print("Situation Familiale (" + e.getSituationFamiliale() + "): ");
+            String sit = scanner.nextLine();
+            if (!sit.isEmpty()) e.setSituationFamiliale(sit);
+
+            System.out.print("Score (" + e.getScore() + "): ");
+            String scoreStr = scanner.nextLine();
+            if (!scoreStr.isEmpty()) e.setScore(Double.parseDouble(scoreStr));
+
+            System.out.print("Date Naissance (" + e.getDateNaissance() + " yyyy-MM-dd): ");
+            String dn = scanner.nextLine();
+            if (!dn.isEmpty()) e.setDateNaissance(LocalDate.parse(dn));
+
+            service.updateEmploye(e);
+            System.out.println(" Employe updated successfully!");
+
+        } catch (Exception ex) {
+            System.out.println(" Error updating employe: " + ex.getMessage());
+        }
+    }
+
 
     public void addEmploye() {
         try {
@@ -76,7 +199,6 @@ public class EmployeController {
             scanner.nextLine();
             System.out.print("Situation Familiale: ");
             e.setSituationFamiliale(scanner.nextLine());
-            scanner.nextLine();
             System.out.print("Score: ");
             e.setScore(scanner.nextDouble());
             scanner.nextLine();
@@ -107,7 +229,27 @@ public class EmployeController {
     public void listSortedByScore() {
         try {
             List<Employe> employes = service.getEmployesSortedByScore();
-            employes.forEach(System.out::println);
+            employes.forEach(e->{
+                System.out.println("=== Employe "+ e.getId() +"  ===");
+                System.out.println("Nom: " + e.getNom());
+                System.out.println("Prenom: " + e.getPrenom());
+                System.out.println("Email: " + e.getEmail());
+                System.out.println("Date Naissance: " + e.getDateNaissance());
+                System.out.println("Ville: " + e.getVille());
+                System.out.println("Adresse: " + e.getAdresse());
+                System.out.println("Telephone: " + e.getTelephone());
+                System.out.println("Nombre Enfants: " + e.getNombreEnfants());
+                System.out.println("Investissement: " + e.getInvestissement());
+                System.out.println("Placement: " + e.getPlacement());
+                System.out.println("Situation Familiale: " + e.getSituationFamiliale());
+                System.out.println("Score: " + e.getScore());
+                System.out.println("Anciennete: " + e.getAnciennete());
+                System.out.println("Salaire: " + e.getSalaire());
+                System.out.println("Poste: " + e.getPost());
+                System.out.println("Contract Type: " + e.getContractType());
+                System.out.println("Employment Sector: " + e.getEmploymentSector());
+                System.out.println("======================");
+            });
         } catch (SQLException e) {
             System.out.println("Error sorting employes: " + e.getMessage());
         }
@@ -118,7 +260,28 @@ public class EmployeController {
         String ville = scanner.next();
         try {
             List<Employe> employes = service.searchByVille(ville);
-            employes.forEach(System.out::println);
+            employes.forEach(e->{
+                System.out.println("=== Employe Details ===");
+                System.out.println("ID: " + e.getId());
+                System.out.println("Nom: " + e.getNom());
+                System.out.println("Prenom: " + e.getPrenom());
+                System.out.println("Email: " + e.getEmail());
+                System.out.println("Date Naissance: " + e.getDateNaissance());
+                System.out.println("Ville: " + e.getVille());
+                System.out.println("Adresse: " + e.getAdresse());
+                System.out.println("Telephone: " + e.getTelephone());
+                System.out.println("Nombre Enfants: " + e.getNombreEnfants());
+                System.out.println("Investissement: " + e.getInvestissement());
+                System.out.println("Placement: " + e.getPlacement());
+                System.out.println("Situation Familiale: " + e.getSituationFamiliale());
+                System.out.println("Score: " + e.getScore());
+                System.out.println("Anciennete: " + e.getAnciennete());
+                System.out.println("Salaire: " + e.getSalaire());
+                System.out.println("Poste: " + e.getPost());
+                System.out.println("Contract Type: " + e.getContractType());
+                System.out.println("Employment Sector: " + e.getEmploymentSector());
+                System.out.println("======================");
+            });
         } catch (SQLException e) {
             System.out.println("Error searching employes: " + e.getMessage());
         }

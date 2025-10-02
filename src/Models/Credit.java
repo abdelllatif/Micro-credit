@@ -21,11 +21,10 @@ public class Credit {
     private CreditType typeCredit;
     private DecisionType decision;
     private Instant createdAt;
-    private String approverId;
 
     public Credit(Integer id, Integer clientId, LocalDate dateDeCredit, BigDecimal montantDemande,
                   BigDecimal montantOctroye, double tauxInteret, int dureeEnMois,
-                  CreditType typeCredit, DecisionType decision, Instant createdAt, String approverId) {
+                  CreditType typeCredit, DecisionType decision, Instant createdAt) {
         this.id = id;
         this.clientId = clientId;
         this.dateDeCredit = dateDeCredit;
@@ -36,7 +35,6 @@ public class Credit {
         this.typeCredit = typeCredit;
         this.decision = decision;
         this.createdAt = createdAt;
-        this.approverId = approverId;
     }
 
     public Credit(Integer clientId, LocalDate dateDeCredit, BigDecimal montantDemande,
@@ -51,7 +49,6 @@ public class Credit {
         this.typeCredit = typeCredit;
         this.decision = decision;
         this.createdAt = createdAt;
-        this.approverId = approverId;
     }
 
     public Integer getId() {
@@ -134,11 +131,4 @@ public class Credit {
         this.createdAt = createdAt;
     }
 
-    public String getApproverId() {
-        return approverId;
-    }
-
-    public void setApproverId(String approverId) {
-        this.approverId = approverId;
-    }
 }

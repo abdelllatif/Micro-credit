@@ -16,10 +16,10 @@ public class Person {
     protected Boolean investissement;
     protected Boolean placement;
     protected String situationFamiliale;
-    protected Double score;
+    protected Integer score;
     protected LocalDateTime dateCreation;
 
-    public Person(String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Double score) {
+    public Person(String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Integer score) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -34,7 +34,7 @@ public class Person {
         this.score = score;
     }
 
-    public Person(Integer id, String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Double score, LocalDateTime dateCreation) {
+    public Person(Integer id, String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Integer score, LocalDateTime dateCreation) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -150,11 +150,11 @@ public class Person {
         this.situationFamiliale = situationFamiliale;
     }
 
-    public Double getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(Double score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 

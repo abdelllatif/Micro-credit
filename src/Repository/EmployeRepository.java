@@ -27,7 +27,7 @@ public class EmployeRepository {
     }
 
     public int save(Employe employe) throws SQLException {
-        String sql = "INSERT INTO employes (nom, prenom, datedenaissance, ville, nombreEnfants, investissement, placement, situation_familiale, score, salaire, anciennete, poste, typecontrat, secteur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO employes (nom, prenom, dateNaissance, ville, nombreEnfants, investissement, placement, situationFamiliale, score, salaire, anciennete, post, contractType, employmentSector) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, employe.getNom());
         ps.setString(2, employe.getPrenom());
@@ -53,7 +53,7 @@ public class EmployeRepository {
     }
 
     public void update(Employe employe) throws SQLException {
-        String sql = "UPDATE employes SET nom=?, prenom=?, ville=?, nombreEnfants=?, investissement=?, placement=?, situation_familiale=?, score=?, salaire=?, anciennete=?, poste=?, typecontrat=?, secteur=? WHERE id=?";
+        String sql = "UPDATE employes SET nom=?, prenom=?, ville=?, nombreEnfants=?, investissement=?, placement=?, situationFamiliale=?, score=?, salaire=?, anciennete=?, post=?, contractType=?, employmentSector=? WHERE id=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, employe.getNom());
         ps.setString(2, employe.getPrenom());

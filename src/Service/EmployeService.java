@@ -21,19 +21,19 @@ public class EmployeService {
         e.setId(rs.getInt("id"));
         e.setNom(rs.getString("nom"));
         e.setPrenom(rs.getString("prenom"));
-        e.setDateNaissance(rs.getDate("datedenaissance").toLocalDate());
+        e.setDateNaissance(rs.getDate("dateNaissance").toLocalDate());
         e.setVille(rs.getString("ville"));
         e.setNombreEnfants(rs.getInt("nombreEnfants"));
         e.setInvestissement(rs.getBoolean("investissement"));
         e.setPlacement(rs.getBoolean("placement"));
-        e.setSituationFamiliale(rs.getString("situation_familiale"));
+        e.setSituationFamiliale(rs.getString("situationFamiliale"));
         e.setDateCreation(rs.getTimestamp("createdAt").toLocalDateTime());
         e.setScore(rs.getDouble("score"));
         e.setSalaire(rs.getFloat("salaire"));
         e.setAnciennete(rs.getInt("anciennete"));
-        e.setPost(rs.getString("poste"));
-        e.setContractType(Employe.ContractType.valueOf(rs.getString("typecontrat")));
-        e.setEmploymentSector(Employe.EmploymentSector.valueOf(rs.getString("secteur")));
+        e.setPost(rs.getString("post"));
+        e.setContractType(Employe.ContractType.valueOf(rs.getString("contractType")));
+        e.setEmploymentSector(Employe.EmploymentSector.valueOf(rs.getString("employmentSector")));
         return e;
     }
 
