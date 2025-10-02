@@ -10,7 +10,7 @@ public class Professionnel extends Person{
     private String secteurActivite;
     private String activite;
 
-    public Professionnel(String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Integer score, Float revenu, String immatriculationFiscale, String secteurActivite, String activite) {
+    public Professionnel(String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, SituationFamilial situationFamiliale, Integer score, Float revenu, String immatriculationFiscale, String secteurActivite, String activite) {
         super(nom, prenom, email, dateNaissance, ville, adresse, telephone, nombreEnfants, investissement, placement, situationFamiliale, score);
         this.revenu = revenu;
         this.immatriculationFiscale = immatriculationFiscale;
@@ -18,7 +18,7 @@ public class Professionnel extends Person{
         this.activite = activite;
     }
 
-    public Professionnel(Integer id, String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Integer score, LocalDateTime dateCreation, Float revenu, String immatriculationFiscale, String secteurActivite, String activite) {
+    public Professionnel(Integer id, String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, SituationFamilial situationFamiliale, Integer score, LocalDateTime dateCreation, Float revenu, String immatriculationFiscale, String secteurActivite, String activite) {
         super(id, nom, prenom, email, dateNaissance, ville, adresse, telephone, nombreEnfants, investissement, placement, situationFamiliale, score, dateCreation);
         this.revenu = revenu;
         this.immatriculationFiscale = immatriculationFiscale;

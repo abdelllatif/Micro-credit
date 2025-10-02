@@ -1,5 +1,6 @@
 package Service;
 import Models.Employe;
+import Models.Person;
 import Repository.EmployeRepository;
 
 import java.sql.ResultSet;
@@ -26,9 +27,9 @@ public class EmployeService {
         e.setNombreEnfants(rs.getInt("nombreEnfants"));
         e.setInvestissement(rs.getBoolean("investissement"));
         e.setPlacement(rs.getBoolean("placement"));
-        e.setSituationFamiliale(rs.getString("situationFamiliale"));
+        e.setSituationFamiliale(Person.SituationFamilial.valueOf(rs.getString("situationFamiliale")));
         e.setDateCreation(rs.getTimestamp("createdAt").toLocalDateTime());
-        e.setScore(rs.getDouble("score"));
+        e.setScore(rs.getInt("score"));
         e.setSalaire(rs.getFloat("salaire"));
         e.setAnciennete(rs.getInt("anciennete"));
         e.setPost(rs.getString("post"));

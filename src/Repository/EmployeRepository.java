@@ -36,7 +36,7 @@ public class EmployeRepository {
         ps.setInt(5, employe.getNombreEnfants());
         ps.setBoolean(6, employe.getInvestissement());
         ps.setBoolean(7, employe.getPlacement());
-        ps.setString(8, employe.getSituationFamiliale());
+        ps.setString(8, employe.getSituationFamiliale().name());
         ps.setDouble(9, employe.getScore());
         ps.setFloat(10, employe.getSalaire());
         ps.setInt(11, employe.getAnciennete());
@@ -61,7 +61,7 @@ public class EmployeRepository {
         ps.setInt(4, employe.getNombreEnfants());
         ps.setBoolean(5, employe.getInvestissement());
         ps.setBoolean(6, employe.getPlacement());
-        ps.setString(7, employe.getSituationFamiliale());
+        ps.setString(7, employe.getSituationFamiliale().name());
         ps.setDouble(8, employe.getScore());
         ps.setFloat(9, employe.getSalaire());
         ps.setInt(10, employe.getAnciennete());

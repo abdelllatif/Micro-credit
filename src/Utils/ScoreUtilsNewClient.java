@@ -26,10 +26,10 @@ public class ScoreUtilsNewClient {
         }
 
         if (p.getSituationFamiliale() != null) {
-            String sf = p.getSituationFamiliale().toLowerCase();
-            if (sf.equals("marié")) {
+            String sf = p.getSituationFamiliale().name();
+            if (sf.equals("Marie")) {
                 score += 3;
-            } else if (sf.equals("célibataire")) {
+            } else if (sf.equals("Celibataire")) {
                 score += 2;
             }
         }
@@ -76,6 +76,7 @@ public class ScoreUtilsNewClient {
                         break;
                 }
             }
+
 
             if (e.getAnciennete() != null) {
                 if (e.getAnciennete() >= 5) {

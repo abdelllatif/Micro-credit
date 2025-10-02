@@ -1,7 +1,9 @@
 package Controller;
 
 import Models.Employe;
+import Models.Person;
 import Service.EmployeService;
+import Utils.ScoreUtilsNewClient;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -90,7 +92,7 @@ public class EmployeController {
         try {
             System.out.print("Enter Employe ID: ");
             int id = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            scanner.nextLine();
 
             Optional<Employe> employeOpt = service.getEmployeById(id);
 
@@ -147,19 +149,14 @@ public class EmployeController {
 
             System.out.print("Situation Familiale (" + e.getSituationFamiliale() + "): ");
             String sit = scanner.nextLine();
-            if (!sit.isEmpty()) e.setSituationFamiliale(sit);
-
-            System.out.print("Score (" + e.getScore() + "): ");
-            String scoreStr = scanner.nextLine();
-            if (!scoreStr.isEmpty()) e.setScore(Double.parseDouble(scoreStr));
-
-            System.out.print("Date Naissance (" + e.getDateNaissance() + " yyyy-MM-dd): ");
+            if (!sit.isEmpty()) e.setSituationFamiliale(Person.SituationFamilial.valueOf(sit));
+            System.out.print("Date Naissance (" + e.getDateNaissance() + ":");
             String dn = scanner.nextLine();
             if (!dn.isEmpty()) e.setDateNaissance(LocalDate.parse(dn));
-
+            Integer score= ScoreUtilsNewClient.calculerScore(e);
+            e.setScore(score);
             service.updateEmploye(e);
             System.out.println(" Employe updated successfully!");
-
         } catch (Exception ex) {
             System.out.println(" Error updating employe: " + ex.getMessage());
         }
@@ -197,16 +194,15 @@ public class EmployeController {
             System.out.print("Placement: ");
             e.setPlacement(scanner.nextBoolean());
             scanner.nextLine();
-            System.out.print("Situation Familiale: ");
-            e.setSituationFamiliale(scanner.nextLine());
-            System.out.print("Score: ");
-            e.setScore(scanner.nextDouble());
-            scanner.nextLine();
+            System.out.print("Situation Familiale (Celibataire/Marie): ");
+            e.setSituationFamiliale(Person.SituationFamilial.valueOf(scanner.nextLine()));
             System.out.print("Date Naissance: ");
             String dateNaissance = scanner.nextLine();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date = LocalDate.parse(dateNaissance, formatter);
             e.setDateNaissance(date);
+            Integer score= ScoreUtilsNewClient.calculerScore(e);
+            e.setScore(score);
             Employe saved = service.addEmploye(e);
             System.out.println("Employe added with ID: " + saved.getId());
 

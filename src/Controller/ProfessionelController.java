@@ -1,5 +1,6 @@
 package Controller;
 
+import Models.Person;
 import Models.Professionnel;
 import Service.ProfessionnelService;
 import Utils.ScoreUtilsNewClient;
@@ -124,7 +125,7 @@ public class ProfessionelController {
             scanner.nextLine();
 
             System.out.print("Situation Familiale: ");
-            p.setSituationFamiliale(scanner.nextLine());
+            p.setSituationFamiliale(Person.SituationFamilial.valueOf(scanner.nextLine()));
 
 
             p.setDateCreation(LocalDateTime.now());
@@ -209,7 +210,7 @@ public class ProfessionelController {
 
             System.out.print("Situation Familiale (" + p.getSituationFamiliale() + "): ");
             String sit = scanner.nextLine();
-            if (!sit.isEmpty()) p.setSituationFamiliale(sit);
+            if (!sit.isEmpty()) p.setSituationFamiliale(Person.SituationFamilial.valueOf(sit));
 
             System.out.print("Score (" + p.getScore() + "): ");
             String score = scanner.nextLine();

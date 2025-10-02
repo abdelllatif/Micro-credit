@@ -4,6 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Person {
+
+    public enum SituationFamilial {
+        Celibataire,
+        Marie
+    }
+
     protected  Integer id;
     protected String nom;
     protected String prenom;
@@ -15,11 +21,11 @@ public class Person {
     protected Integer nombreEnfants;
     protected Boolean investissement;
     protected Boolean placement;
-    protected String situationFamiliale;
+    protected SituationFamilial situationFamiliale;
     protected Integer score;
     protected LocalDateTime dateCreation;
 
-    public Person(String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Integer score) {
+    public Person(String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, SituationFamilial situationFamiliale, Integer score) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -34,7 +40,7 @@ public class Person {
         this.score = score;
     }
 
-    public Person(Integer id, String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Integer score, LocalDateTime dateCreation) {
+    public Person(Integer id, String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, SituationFamilial situationFamiliale, Integer score, LocalDateTime dateCreation) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -142,11 +148,11 @@ public class Person {
         this.placement = placement;
     }
 
-    public String getSituationFamiliale() {
+    public SituationFamilial getSituationFamiliale() {
         return situationFamiliale;
     }
 
-    public void setSituationFamiliale(String situationFamiliale) {
+    public void setSituationFamiliale(SituationFamilial situationFamiliale) {
         this.situationFamiliale = situationFamiliale;
     }
 

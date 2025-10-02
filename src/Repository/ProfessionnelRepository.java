@@ -44,7 +44,7 @@ public class ProfessionnelRepository {
         ps.setInt(8, p.getNombreEnfants());
         ps.setBoolean(9, p.getInvestissement());
         ps.setBoolean(10, p.getPlacement());
-        ps.setString(11, p.getSituationFamiliale());
+        ps.setString(11, p.getSituationFamiliale().name());
         ps.setDouble(12, p.getScore());
         ps.setFloat(13, p.getRevenu());
         ps.setString(14, p.getImmatriculationFiscale());
@@ -78,7 +78,7 @@ public class ProfessionnelRepository {
         ps.setInt(8, p.getNombreEnfants());
         ps.setBoolean(9, p.getInvestissement());
         ps.setBoolean(10, p.getPlacement());
-        ps.setString(11, p.getSituationFamiliale());
+        ps.setString(11, p.getSituationFamiliale().name());
         ps.setDouble(12, p.getScore());
         ps.setFloat(13, p.getRevenu());
         ps.setString(14, p.getImmatriculationFiscale());

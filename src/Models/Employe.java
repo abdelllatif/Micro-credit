@@ -24,7 +24,7 @@ public class Employe extends Person {
     private ContractType contractType;
     private EmploymentSector employmentSector;
 
-    public Employe(String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Integer score, Integer anciennete, Float salaire, String post, ContractType contractType, EmploymentSector employmentSector) {
+    public Employe(String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, SituationFamilial situationFamiliale, Integer score, Integer anciennete, Float salaire, String post, ContractType contractType, EmploymentSector employmentSector) {
         super(nom, prenom, email, dateNaissance, ville, adresse, telephone, nombreEnfants, investissement, placement, situationFamiliale, score);
         this.anciennete = anciennete;
         this.salaire = salaire;
@@ -34,7 +34,7 @@ public class Employe extends Person {
     }
 
 
-    public Employe(Integer id, String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, String situationFamiliale, Integer score, LocalDateTime dateCreation, Integer anciennete, Float salaire, String post, ContractType contractType, EmploymentSector employmentSector) {
+    public Employe(Integer id, String nom, String prenom, String email, LocalDate dateNaissance, String ville, String adresse, String telephone, Integer nombreEnfants, Boolean investissement, Boolean placement, SituationFamilial situationFamiliale, Integer score, LocalDateTime dateCreation, Integer anciennete, Float salaire, String post, ContractType contractType, EmploymentSector employmentSector) {
         super(id, nom, prenom, email, dateNaissance, ville, adresse, telephone, nombreEnfants, investissement, placement, situationFamiliale, score, dateCreation);
         this.anciennete = anciennete;
         this.salaire = salaire;

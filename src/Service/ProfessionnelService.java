@@ -1,5 +1,6 @@
 package Service;
 
+import Models.Person;
 import Models.Professionnel;
 import Repository.ProfessionnelRepository;
 
@@ -29,8 +30,8 @@ public class ProfessionnelService {
                 rs.getInt("nombreEnfants"),
                 rs.getBoolean("investissement"),
                 rs.getBoolean("placement"),
-                rs.getString("situationFamiliale"),
-                rs.getDouble("score"),
+                Person.SituationFamilial.valueOf(rs.getString("situationFamiliale")),
+                rs.getInt("score"),
                 rs.getTimestamp("dateCreation").toLocalDateTime(),
                 rs.getFloat("revenu"),
                 rs.getString("immatriculationFiscale"),
