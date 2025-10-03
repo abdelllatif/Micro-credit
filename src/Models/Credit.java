@@ -5,14 +5,15 @@ import java.time.LocalDate;
 import java.lang.Integer;
 
 public class Credit {
-    enum CreditType{
+   public enum CreditType{
         CONSOMMATION , IMMOBILIER, AUTOMOBILE, EQUIPMENT
     }
-    enum DecisionType{
+    public enum DecisionType{
         ACCORDIMMEDIAT, ETUDEMANUELLE, REFUS_AUTOMATIQUE
     }
     private Integer id;
-    private Integer clientId;
+    private Integer professionnelId;
+    private Integer employeId;
     private LocalDate dateDeCredit;
     private BigDecimal montantDemande;
     private BigDecimal montantOctroye;
@@ -20,13 +21,13 @@ public class Credit {
     private int dureeEnMois;
     private CreditType typeCredit;
     private DecisionType decision;
-    private Instant createdAt;
 
-    public Credit(Integer id, Integer clientId, LocalDate dateDeCredit, BigDecimal montantDemande,
+    public Credit(Integer id, Integer professionnelId,Integer employeId, LocalDate dateDeCredit, BigDecimal montantDemande,
                   BigDecimal montantOctroye, double tauxInteret, int dureeEnMois,
-                  CreditType typeCredit, DecisionType decision, Instant createdAt) {
+                  CreditType typeCredit, DecisionType decision) {
         this.id = id;
-        this.clientId = clientId;
+        this.professionnelId = professionnelId;
+        this.employeId = employeId;
         this.dateDeCredit = dateDeCredit;
         this.montantDemande = montantDemande;
         this.montantOctroye = montantOctroye;
@@ -34,13 +35,13 @@ public class Credit {
         this.dureeEnMois = dureeEnMois;
         this.typeCredit = typeCredit;
         this.decision = decision;
-        this.createdAt = createdAt;
     }
 
-    public Credit(Integer clientId, LocalDate dateDeCredit, BigDecimal montantDemande,
+    public Credit(Integer professionnelId,Integer employeId, LocalDate dateDeCredit, BigDecimal montantDemande,
                   BigDecimal montantOctroye, double tauxInteret, int dureeEnMois,
-                  CreditType typeCredit, DecisionType decision, Instant createdAt, String approverId) {
-        this.clientId = clientId;
+                  CreditType typeCredit, DecisionType decision, String approverId) {
+        this.professionnelId = professionnelId;
+        this.employeId = employeId;
         this.dateDeCredit = dateDeCredit;
         this.montantDemande = montantDemande;
         this.montantOctroye = montantOctroye;
@@ -48,9 +49,9 @@ public class Credit {
         this.dureeEnMois = dureeEnMois;
         this.typeCredit = typeCredit;
         this.decision = decision;
-        this.createdAt = createdAt;
     }
-
+    public Credit() {
+    }
     public Integer getId() {
         return id;
     }
@@ -59,13 +60,6 @@ public class Credit {
         this.id = id;
     }
 
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
-    }
 
     public LocalDate getDateDeCredit() {
         return dateDeCredit;
@@ -123,12 +117,20 @@ public class Credit {
         this.decision = decision;
     }
 
-    public Instant getCreatedAt() {
-        return createdAt;
+
+    public Integer getEmployeId() {
+        return employeId;
     }
 
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
+    public void setEmployeId(Integer employeId) {
+        this.employeId = employeId;
     }
 
+    public Integer getProfessionnelId() {
+        return professionnelId;
+    }
+
+    public void setProfessionnelId(Integer professionnelId) {
+        this.professionnelId = professionnelId;
+    }
 }

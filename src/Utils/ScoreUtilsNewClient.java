@@ -78,6 +78,7 @@ public class ScoreUtilsNewClient {
             }
 
 
+
             if (e.getAnciennete() != null) {
                 if (e.getAnciennete() >= 5) {
                     score += 5;

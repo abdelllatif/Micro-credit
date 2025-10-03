@@ -204,7 +204,7 @@ public class EmployeController {
             Integer score= ScoreUtilsNewClient.calculerScore(e);
             e.setScore(score);
             Employe saved = service.addEmploye(e);
-            System.out.println("Employe added with ID: " + saved.getId());
+            System.out.println("Employe adde'd with ID: " + saved.getId());
 
         } catch (SQLException ex) {
             System.out.println("Error adding employe: " + ex.getMessage());

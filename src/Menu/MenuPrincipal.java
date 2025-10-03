@@ -27,7 +27,7 @@ public static void afficherMenuPrincipal(){
               MenuClient.afficherMenuClients();
               break;
           case 2:
-              //
+              MenuCredits.afficherMenuCredits();
               break;
           case 3:
               //

@@ -11,27 +11,29 @@ public class Incident {
     private Integer id;
     private LocalDate dateIncident;
     private Integer echeanceId;
-    private double scoreImpact;
+    private Integer score;
     private IncidentType typeIncident;
     private String note;
 
-    public Incident(Integer id, LocalDate dateIncident, Integer echeanceId, double scoreImpact,
+    public Incident(Integer id, LocalDate dateIncident, Integer echeanceId, Integer scoreImpact,
                     IncidentType typeIncident, String note) {
         this.id = id;
         this.dateIncident = dateIncident;
         this.echeanceId = echeanceId;
-        this.scoreImpact = scoreImpact;
+        this.score = scoreImpact;
         this.typeIncident = typeIncident;
         this.note = note;
     }
 
-    public Incident(LocalDate dateIncident, Integer echeanceId, double scoreImpact,
+    public Incident(LocalDate dateIncident, Integer echeanceId, Integer score,
                     IncidentType typeIncident, String note) {
         this.dateIncident = dateIncident;
         this.echeanceId = echeanceId;
-        this.scoreImpact = scoreImpact;
+        this.score = score;
         this.typeIncident = typeIncident;
         this.note = note;
+    }
+    public Incident() {
     }
 
     public Integer getId() {
@@ -58,12 +60,12 @@ public class Incident {
         this.echeanceId = echeanceId;
     }
 
-    public double getScoreImpact() {
-        return scoreImpact;
+    public Integer getScore() {
+        return score;
     }
 
-    public void setScoreImpact(double scoreImpact) {
-        this.scoreImpact = scoreImpact;
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
     public IncidentType getTypeIncident() {

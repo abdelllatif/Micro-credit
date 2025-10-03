@@ -12,6 +12,7 @@ public class MenuClient {
                     "1:Employe\n" +
                     "2:Profitionnel\n" +
                     "0:Quitter");
+            System.out.print("entrer votre choix: ");
              choix = scanner.nextInt();
             switch (choix){
                 case 1:

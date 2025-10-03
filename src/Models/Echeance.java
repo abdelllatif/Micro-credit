@@ -6,8 +6,8 @@ import java.lang.Integer;
 
 public class Echeance {
 
-    enum PaymentStatus{
-        PAYEE, NON_PAYEE, PAYEE_PAR_CHEQUE, PAYEE_PAR_CHEQUE_SANS_NUMERO_CHEQUE
+    public enum PaymentStatus{
+        PAYEATEMPS,ENRETARD, PAYEENRETARD, IMPAYENONREGLE, IMPAYEREGLE
     }
     private Integer id;
     private Integer creditId;
@@ -35,6 +35,9 @@ public class Echeance {
         this.statutPaiement = statutPaiement;
     }
 
+
+    public Echeance() {
+    }
     public Integer getId() {
         return id;
     }
