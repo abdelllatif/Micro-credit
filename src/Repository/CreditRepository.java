@@ -21,39 +21,42 @@ public class CreditRepository {
     }
 
     public ResultSet addCredit(Credit credit) throws SQLException {
-        try {
-            if (conn == null) throw new SQLException("Connection is null!");
+        if (conn == null) throw new SQLException("Connection is null!");
 
-            String query = "INSERT INTO credit " +
-                    "(professionnel_id, employe_id, montant_demande, montant_octroye, taux_interet, duree_en_mois, type_credit, decision) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement ps = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+        String query = "INSERT INTO credit " +
+                "(professionnel_id, employe_id, montant_demande, montant_octroye, taux_interet, duree_en_mois, type_credit, decision) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-            ps.setObject(1, credit.getProfessionnelId() == 0 ? null : credit.getProfessionnelId());
-            ps.setObject(2, credit.getEmployeId() == 0 ? null : credit.getEmployeId());
+        PreparedStatement ps = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+
+        // Professionnel ou Employe: set null si 0
+        Integer profId = credit.getProfessionnelId() != null && credit.getProfessionnelId() > 0 ? credit.getProfessionnelId() : null;
+        Integer empId  = credit.getEmployeId() != null && credit.getEmployeId() > 0 ? credit.getEmployeId() : null;
+        ps.setObject(1, profId);
+        ps.setObject(2, empId);
+
+        // Montants: ممكن null
+        if (credit.getMontantDemande() != null)
             ps.setBigDecimal(3, credit.getMontantDemande());
+        else
+            ps.setNull(3, java.sql.Types.DECIMAL);
+
+        if (credit.getMontantOctroye() != null)
             ps.setBigDecimal(4, credit.getMontantOctroye());
-            ps.setDouble(5, credit.getTauxInteret());
-            ps.setInt(6, credit.getDureeEnMois());
-            ps.setString(7, credit.getTypeCredit().name());
-            ps.setString(8, credit.getDecision().name());
+        else
+            ps.setNull(4, java.sql.Types.DECIMAL);
 
-            int rows = ps.executeUpdate();
-            if (rows == 0) {
-                System.out.println("No rows inserted.");
-            } else {
-                System.out.println("Credit inserted successfully.");
-            }
+        ps.setDouble(5, credit.getTauxInteret());
+        ps.setInt(6, credit.getDureeEnMois());
 
-            return ps.getGeneratedKeys();
+        // Enums: jamais null
+        ps.setString(7, credit.getTypeCredit() != null ? credit.getTypeCredit().name() : Credit.CreditType.CONSOMMATION.name());
+        ps.setString(8, credit.getDecision() != null ? credit.getDecision().name() : Credit.DecisionType.REFUS_AUTOMATIQUE.name());
 
-        } catch (SQLException e) {
-            System.out.println(" SQLException in addCredit: " + e.getMessage());
-            throw e;
-        } catch (NullPointerException e) {
-            System.out.println(" NullPointerException in addCredit: " + e.getMessage());
-            throw e;
-        }
+        int rows = ps.executeUpdate();
+        if (rows == 0) System.out.println("No rows inserted.");
+
+        return ps.getGeneratedKeys();
     }
 
     public boolean updateCredit(Credit credit, int id) throws SQLException {
@@ -70,7 +73,7 @@ public class CreditRepository {
                     "duree_en_mois = ?, " +
                     "type_credit = ?, " +
                     "decision = ? " +
-                    "WHERE id = ?"; // لاحظت هنا كنت عندك comma زايد قبل WHERE
+                    "WHERE id = ?";
 
             PreparedStatement ps = conn.prepareStatement(query);
 

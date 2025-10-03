@@ -82,12 +82,8 @@ public class CreditController {
             System.out.print("Durée en mois: ");
             int dureeEnMois = sc.nextInt();
 
-            List<Credit> credits;
-            if (estEmploye) {
-                credits = creditServ.getCreditsByEmployee(clientId);
-            } else {
-                credits = creditServ.getCreditsByProfessional(clientId);
-            }
+            List<Credit> credits = estEmploye ? creditServ.getCreditsByEmployee(clientId)
+                    : creditServ.getCreditsByProfessional(clientId);
 
             List<Echeance> toutesEcheances = new ArrayList<>();
             for (Credit c : credits) {
@@ -106,30 +102,31 @@ public class CreditController {
             else credit.setProfessionnelId(clientId);
 
             credit.setMontantDemande(montantDemande);
-            credit.setMontantOctroye(
-                    decision == Credit.DecisionType.ACCORDIMMEDIAT ? montantDemande : BigDecimal.ZERO
-            );
+            credit.setMontantOctroye(decision == Credit.DecisionType.ACCORDIMMEDIAT ? montantDemande : BigDecimal.ZERO);
             credit.setTauxInteret(5.0);
             credit.setDureeEnMois(dureeEnMois);
             credit.setTypeCredit(Credit.CreditType.CONSOMMATION);
-            credit.setDecision(decision);
+            credit.setDecision(decision != null ? decision : Credit.DecisionType.REFUS_AUTOMATIQUE);
 
-            ResultSet rs = creditRepo.addCredit(credit);
-            if (rs.next()) {
-                int id = rs.getInt(1);
-                credit.setId(id);
-                System.out.println("Credit ajouté avec ID = " + id + " | Décision = " + decision);
+            int generatedId = creditServ.addCredit(credit);
+            if (generatedId != -1) {
+                credit.setId(generatedId);
+                System.out.println("Credit ajouté avec ID = " + generatedId + " | Décision = " + credit.getDecision());
 
-                if (decision == Credit.DecisionType.ACCORDIMMEDIAT) {
+                if (credit.getDecision() == Credit.DecisionType.ACCORDIMMEDIAT) {
                     echeanceServ.generateEcheancesForCredit(credit);
                 }
-
             } else {
-                System.out.println(" Erreur lors de l'ajout du crédit");
+                System.out.println("Erreur lors de l'ajout du crédit");
             }
 
         } catch (SQLException e) {
             System.out.println("Erreur SQL: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Erreur inattendue: " + e.getMessage());
+            e.printStackTrace();
         }
     }
+
+
 }

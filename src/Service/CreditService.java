@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreditService {
-
     private final CreditRepository creditRepo;
 
     public CreditService() {
@@ -65,7 +64,7 @@ public class CreditService {
         credit.setId(rs.getInt("id"));
         credit.setProfessionnelId(rs.getInt("professionnel_id"));
         credit.setEmployeId(rs.getInt("employe_id"));
-        credit.setDateDeCredit(rs.getDate("date_de_credit").toLocalDate());
+        credit.setMontantDemande(rs.getBigDecimal("montant_demande"));
         credit.setMontantOctroye(rs.getBigDecimal("montant_octroye"));
         credit.setTauxInteret(rs.getDouble("taux_interet"));
         credit.setDureeEnMois(rs.getInt("duree_en_mois"));
